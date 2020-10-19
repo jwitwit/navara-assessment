@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewmodel"
+            type="com.jwitwit.navara.ui.viewmodels.GroceryViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvGroceryItems"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                android:paddingBottom="50dp"
+                android:clipToPadding="false"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <EditText
+                android:id="@+id/etItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewmodel.groceryItem}" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/btnAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Add Item"
+                    android:onClick="@{() -> viewmodel.insertItem()}" />
+
+                <Button
+                    android:id="@+id/btnClear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clear list"
+                    android:onClick="@{() -> viewmodel.resetList()}" />
+
+                <CheckBox
+                    android:id="@+id/cbUnique"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:checked="@={viewmodel.isUnique}"
+                    android:layout_weight="1"
+                    android:text="Enforce Unique" />
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
